@@ -13,3 +13,5 @@ export interface IItinerary {
   location: string;
   description: string;
 }
+
+export type FilterTrip = 'all' | 'upcoming' | 'completed';

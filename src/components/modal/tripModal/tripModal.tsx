@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import { CustomModal } from '@/components/modal/modal/modal';
 import { IItinerary, ITravel } from '@/app/interface';
-import { Header1 } from '@/app/style';
+import { H1 } from '@/app/style';
 import { emptyItinerary } from '@/utils/itinerary';
 import { selectTravels } from '@/lib/features/rootSlice';
 import { useAppSelector } from '@/lib/hooks';
@@ -114,7 +114,7 @@ export default function TripModal({
       <CustomModal isOpen={isOpen} onCancel={onCancel}>
         <ContentText>
           <form action='' method='POST' onSubmit={handleSubmit(onSubmit)}>
-            <Header1>Create a trip</Header1>
+            <H1>Create a trip</H1>
             <CloseButton onClick={onCancel}>×</CloseButton>
 
             <MainForm>

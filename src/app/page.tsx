@@ -19,22 +19,14 @@ import {
 } from '@/lib/features/rootSlice';
 import { ConfirmationModal } from '@/components/modal/confirmationModal/confirmationModal';
 import TravelDetailModal from '@/components/modal/travelDetailModal/travelDetailModal';
-import { ITravel } from './interface';
+import { FilterTrip, ITravel } from './interface';
 import { Header } from '@/components/header/header';
 import Loading from '@/components/loading/loading';
 import { filterTravels, updatedTravels } from '@/utils/travel';
 import TripModal from '@/components/modal/tripModal/tripModal';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
-import {
-  TabButton,
-  ButtonGroup,
-  Header1,
-  MainPage,
-  Subtitle,
-  Travels,
-} from './style';
-
-type FilterTrip = 'all' | 'upcoming' | 'completed';
+import { H1, MainPage, Subtitle, Travels } from './style';
+import { Tabs } from '@/components/tabs/tabs';
 
 export default function Home() {
   const [filteredTravels, setFilteredTravels] = useState<ITravel[]>([]);
@@ -165,29 +157,13 @@ export default function Home() {
           <Loading />
         ) : (
           <MainPage>
-            <Header1>The places you dream of</Header1>
+            <H1>The places you dream of</H1>
             <Subtitle>Let’s live new adventures</Subtitle>
             <SearchInput defaultValue={''}></SearchInput>
-            <ButtonGroup>
-              <TabButton
-                $selected={selectedButton === 'all'}
-                onClick={() => setSelectedButton('all')}
-              >
-                All
-              </TabButton>
-              <TabButton
-                $selected={selectedButton === 'upcoming'}
-                onClick={() => setSelectedButton('upcoming')}
-              >
-                Upcoming
-              </TabButton>
-              <TabButton
-                $selected={selectedButton === 'completed'}
-                onClick={() => setSelectedButton('completed')}
-              >
-                Completed
-              </TabButton>
-            </ButtonGroup>
+            <Tabs
+              selectedButton={selectedButton}
+              setSelectedButton={setSelectedButton}
+            />
             <Travels>
               {filteredTravels &&
                 filteredTravels.map((travel: ITravel) => (

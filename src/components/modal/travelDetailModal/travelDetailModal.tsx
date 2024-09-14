@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
-import { Header1 } from '@/app/style';
+import { H1 } from '@/app/style';
 import { Header3, Text1 } from '@/components/travelCard/style';
 import { ITravel, IItinerary } from '@/app/interface';
 import { useMarckAsCompletedTravelByIdMutation } from '@/lib/features/apiSlice';
@@ -124,7 +124,7 @@ export default function TravelDetailModal({
               <CloseButton onClick={onCancel}>×</CloseButton>
             </ImageContainer>
             <ContentText>
-              <Header1>{travel.title}</Header1>
+              <H1>{travel.title}</H1>
               <ButtonCheck onClick={handleCompleted}>
                 <Image
                   src={
