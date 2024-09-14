@@ -1,16 +1,16 @@
 'use client';
+import { useEffect, useState } from 'react';
+import { NextUIProvider } from '@nextui-org/system';
+
 import { TravelCard } from '@/components/travelCard/travelCard';
 import styles from './page.module.css';
 import { SearchInput } from '@/components/search/search';
-import { NextUIProvider } from '@nextui-org/system';
-import { useEffect, useState } from 'react';
 import {
   useCreateTravelMutation,
   useDeleteTravelByIdMutation,
   useGetTravelsQuery,
   useUpdateTravelMutation,
 } from '@/lib/features/apiSlice';
-import { useDispatch, useSelector } from 'react-redux';
 import {
   selectSearchText,
   selectTravels,
@@ -19,7 +19,12 @@ import {
 } from '@/lib/features/rootSlice';
 import { ConfirmationModal } from '@/components/modal/confirmationModal/confirmationModal';
 import TravelDetailModal from '@/components/modal/travelDetailModal/travelDetailModal';
-
+import { ITravel } from './interface';
+import { Header } from '@/components/header/header';
+import Loading from '@/components/loading/loading';
+import { filterTravels, updatedTravels } from '@/utils/travel';
+import TripModal from '@/components/modal/tripModal/tripModal';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import {
   TabButton,
   ButtonGroup,
@@ -28,11 +33,6 @@ import {
   Subtitle,
   Travels,
 } from './style';
-import { ITravel } from './interface';
-import { Header } from '@/components/header/header';
-import Loading from '@/components/loading/loading';
-import { filterTravels, updatedTravels } from '@/utils/travel';
-import TripModal from '@/components/modal/tripModal/tripModal';
 
 type FilterTrip = 'all' | 'upcoming' | 'completed';
 
@@ -42,12 +42,11 @@ export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
   const [isEditTravelModalOpen, setIsEditTravelModalOpen] = useState(false);
-
   const [selectedTravel, setSelectedTravel] = useState<number>(0);
 
-  const dispatch = useDispatch();
-  const search = useSelector(selectSearchText);
-  const travels = useSelector(selectTravels);
+  const dispatch = useAppDispatch();
+  const search = useAppSelector(selectSearchText);
+  const travels = useAppSelector(selectTravels);
 
   const {
     data: getTravelsData,

@@ -1,7 +1,7 @@
 import React from 'react';
-import { ButtonGroup, CancelButton, ConfirmButton, ModalTitle } from './style';
 import useDisableScroll from '@/hooks/useDisableScroll';
-import { CustomModal } from '../modal/modal';
+import { CustomModal } from '@/components/modal/modal/modal';
+import { ButtonGroup, CancelButton, ConfirmButton, ModalTitle } from './style';
 
 interface IConfirmationModal {
   isOpen: boolean;

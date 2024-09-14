@@ -1,6 +1,11 @@
+import { useState } from 'react';
 import Image from 'next/image';
 
 import { ITravel } from '@/app/interface';
+import { selectRandomTrip } from '@/lib/features/rootSlice';
+import { useAppSelector } from '@/lib/hooks';
+import Countdown from '@/components/countdown/countDown';
+import { defaultImage } from '@/utils/const';
 import {
   ButtonTextContainer,
   CardContainer,
@@ -12,10 +17,6 @@ import {
   Text1,
   Tag,
 } from './style';
-import { useState } from 'react';
-import { selectRandomTrip } from '@/lib/features/rootSlice';
-import Countdown from '../countdown/countDown';
-import { useAppSelector } from '@/lib/hooks';
 
 interface Card {
   travel: ITravel;
@@ -28,9 +29,7 @@ export const TravelCard = ({ travel, onDelete, onEdit, onDetails }: Card) => {
   const travelRandom = useAppSelector(selectRandomTrip);
 
   const handleError = () => {
-    setImgSrc(
-      'https://a.cdn-hotels.com/gdcs/production82/d1923/447a348f-f875-4885-b00a-e9a90603fef5.jpg'
-    );
+    setImgSrc(defaultImage);
   };
 
   return (

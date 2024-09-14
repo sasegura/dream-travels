@@ -1,7 +1,8 @@
 'use client';
-import { setSearchText } from '@/lib/features/rootSlice';
 import { ChangeEvent, useState } from 'react';
-import { useDispatch } from 'react-redux';
+
+import { setSearchText } from '@/lib/features/rootSlice';
+import { useAppDispatch } from '@/lib/hooks';
 import { CustomSInput, SButton, SContainer } from './style';
 
 interface iDefault {
@@ -16,7 +17,7 @@ export const SearchInput = ({ defaultValue }: iDefault) => {
 
     setValue(inputValue);
   };
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const handleSearch = () => {
     dispatch(setSearchText(inputValue));

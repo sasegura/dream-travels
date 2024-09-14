@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Text2 } from '../travelCard/style';
 import { Subtitle } from '@/app/style';
-import { CountdownContainer } from './style';
 import { calculateTimeLeft } from '@/utils/countDown';
+import { Text2 } from '../travelCard/style';
+import { CountdownContainer } from './style';
 
 const Countdown: React.FC<{ targetDate: Date; title: string }> = ({
   targetDate,

@@ -1,11 +1,16 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { Header1 } from '@/app/style';
-
 import Image from 'next/image';
 
+import { Header1 } from '@/app/style';
 import { Header3, Text1 } from '@/components/travelCard/style';
 import { ITravel, IItinerary } from '@/app/interface';
+import { useMarckAsCompletedTravelByIdMutation } from '@/lib/features/apiSlice';
+import { CustomModal } from '@/components/modal/modal/modal';
+import { selectTravels, setTravels } from '@/lib/features/rootSlice';
+import { updatedTravels } from '@/utils/travel';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
+import { defaultImage } from '@/utils/const';
 import {
   ButtonCheck,
   CloseButton,
@@ -18,12 +23,6 @@ import {
   TimelineItem,
   TimelinePoint,
 } from './style';
-import { useMarckAsCompletedTravelByIdMutation } from '@/lib/features/apiSlice';
-
-import { CustomModal } from '../modal/modal';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectTravels, setTravels } from '@/lib/features/rootSlice';
-import { updatedTravels } from '@/utils/travel';
 
 const emptyTravel = {
   title: '',
@@ -40,8 +39,6 @@ interface ITravelModal {
   onCancel: () => void;
 }
 
-const defaultImage =
-  'https://a.cdn-hotels.com/gdcs/production82/d1923/447a348f-f875-4885-b00a-e9a90603fef5.jpg';
 export default function TravelDetailModal({
   id,
   isOpen,
@@ -50,8 +47,8 @@ export default function TravelDetailModal({
   const [travel, setTravel] = useState<ITravel>(emptyTravel);
   const [imgSrc, setImgSrc] = useState(travel.photo_url ?? '');
 
-  const travels = useSelector(selectTravels);
-  const dispatch = useDispatch();
+  const travels = useAppSelector(selectTravels);
+  const dispatch = useAppDispatch();
 
   const handleError = () => {
     setImgSrc(defaultImage);

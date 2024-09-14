@@ -1,12 +1,5 @@
 import Image from 'next/image';
-import {
-  BottonLinkContainer,
-  ButtonLink,
-  CountdownHeader,
-  HeaderWrapper,
-  Topbar,
-} from './style';
-import Countdown from '../countdown/countDown';
+
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import {
   selectRandomTrip,
@@ -14,6 +7,14 @@ import {
   setDateRandomTrip,
   setTravels,
 } from '@/lib/features/rootSlice';
+import Countdown from '@/components/countdown/countDown';
+import {
+  BottonLinkContainer,
+  ButtonLink,
+  CountdownHeader,
+  HeaderWrapper,
+  Topbar,
+} from './style';
 
 export const Header = ({ openModal }: { openModal: () => void }) => {
   const dispatch = useAppDispatch();

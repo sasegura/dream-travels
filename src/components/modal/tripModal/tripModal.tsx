@@ -1,11 +1,15 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { CustomModal } from '../modal/modal';
-import { IItinerary, ITravel } from '@/app/interface';
+import { zodResolver } from '@hookform/resolvers/zod';
 
+import { CustomModal } from '@/components/modal/modal/modal';
+import { IItinerary, ITravel } from '@/app/interface';
+import { Header1 } from '@/app/style';
+import { emptyItinerary } from '@/utils/itinerary';
+import { selectTravels } from '@/lib/features/rootSlice';
+import { useAppSelector } from '@/lib/hooks';
 import {
   CloseButton,
   ContentText,
@@ -21,10 +25,6 @@ import {
   Textarea,
   TotalW,
 } from './style';
-import { Header1 } from '@/app/style';
-import { emptyItinerary } from '@/utils/itinerary';
-import { useSelector } from 'react-redux';
-import { selectTravels } from '@/lib/features/rootSlice';
 
 const emptyTravel = {
   title: '',
@@ -59,7 +59,7 @@ export default function TripModal({
   editTravel,
 }: ITripModal) {
   const [itinerary, setItimerary] = useState<IItinerary[]>([]);
-  const travels = useSelector(selectTravels);
+  const travels = useAppSelector(selectTravels);
 
   const {
     handleSubmit,
