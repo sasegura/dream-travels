@@ -1,11 +1,11 @@
-import { fireEvent, getByText, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { Header } from './header';
 import { store, TestWrapper } from '@/utils/testUtils';
 import { selectTravels } from '@/lib/features/rootSlice';
 
 const mockDispatch = jest.fn();
-const mockSelector = (selectorFn: any) => {
+const mockSelector = (selectorFn: unknown) => {
   if (selectorFn === selectTravels) {
     return [
       {
